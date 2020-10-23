@@ -1,4 +1,4 @@
-package org.launchcode.skillstracker.controllers;
+package org.launchcode.skillstracker.controllers.s1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -6,20 +6,21 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SkillsController {
 
-    @GetMapping
+    @GetMapping("s1")
     @ResponseBody
     public static String frontPage() {
         return "<h1>Skills Tracker</h1>"+
                 "<h2>languages</h2>"+
-                "<ol><li>Java</li><li>Javascript</li><li>Python</li></ol>";
+                "<ol><li>Java</li><li>Javascript</li><li>Python</li></ol>" +
+                "<a href='/s1/form'><button>form</button></a>";
     }
 
-    @GetMapping("form")
+    @GetMapping("s1/form")
     @ResponseBody
     public String form() {
         String html = "<html>" +
                 "<div>" +
-                "  <form method=\"get\" action=\"/favorites\" class=\"language-picker__form\">" +
+                "  <form method=\"get\" action=\"/s1/favorites\" class=\"language-picker__form\">" +
                 "    <label for=\"coder\">Name:</label>" +
                 "    <input name=\"coder\"><br>" +
                 "    <label for=\"languageone\">My favorite language:</label>" +
@@ -47,7 +48,7 @@ public class SkillsController {
         return html;
     }
 
-    @RequestMapping(value="favorites",method={RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value="s1/favorites",method={RequestMethod.GET,RequestMethod.POST})
     @ResponseBody
     public String favorites(@RequestParam String coder, @RequestParam String languageone, @RequestParam String languagetwo, @RequestParam String languagethree){
         String html = "<html>" +
